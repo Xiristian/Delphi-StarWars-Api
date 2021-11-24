@@ -1,0 +1,39 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{AE06B539-5D0B-45D6-82B1-E4955DB01B82}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="ProjetoEma.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Git\ProjetoEma.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ProjetoEma">
+        <MSBuild Projects="..\Git\ProjetoEma.dproj"/>
+    </Target>
+    <Target Name="ProjetoEma:Clean">
+        <MSBuild Projects="..\Git\ProjetoEma.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProjetoEma:Make">
+        <MSBuild Projects="..\Git\ProjetoEma.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ProjetoEma;ProjetoEma"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ProjetoEma:Clean;ProjetoEma:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ProjetoEma:Make;ProjetoEma:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
